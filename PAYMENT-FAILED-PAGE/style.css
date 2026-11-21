@@ -1,0 +1,558 @@
+/* ==========================================================================
+   1. VARIABLES & BASE RESET
+   ========================================================================== */
+:root {
+  --bg-light: linear-gradient(180deg, #eef4f8 0%, #d8e5ee 65%, #c5d6e3 100%);
+  --bg-dark: radial-gradient(circle at 50% 42%, #0d2b4e 0%, #061326 55%, #030811 100%);
+  --text-dark: #0f172a;
+  --text-muted: #334155;
+  --orange-btn: linear-gradient(180deg, #ff922b 0%, #f76707 100%);
+  --teal-btn: linear-gradient(180deg, #158096 0%, #0c5d6e 100%);
+  --font-display: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-body);
+  color: var(--text-dark);
+  background: var(--bg-light);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ==========================================================================
+   2. HEADER & NAVIGATION
+   ========================================================================== */
+.site-header {
+  position: relative;
+  z-index: 40;
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.header-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.65rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand-logo {
+  display: inline-flex;
+  align-items: center;
+}
+
+.logo-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  line-height: 1;
+}
+
+.logo-swoosh {
+  width: 138px;
+  height: 52px;
+  display: block;
+}
+
+.brand-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.58rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #0f172a;
+  margin-top: -4px;
+}
+
+.desktop-nav {
+  display: none;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.icon-btn {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f172a;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.icon-btn:hover {
+  background: rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+.icon-btn svg {
+  width: 21px;
+  height: 21px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: 0;
+  right: -2px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: #f97316;
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Search Bar */
+.search-overlay {
+  padding: 0.75rem 1.25rem;
+  background: #0f172a;
+}
+
+.search-form {
+  max-width: 580px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search-form input {
+  flex: 1;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.search-form input::placeholder {
+  color: #cbd5e1;
+}
+
+.search-submit {
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  background: #f97316;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   3. MOBILE DRAWER
+   ========================================================================== */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.28s ease;
+  z-index: 80;
+}
+
+.drawer-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(80vw, 310px);
+  height: 100vh;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 1.4rem;
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.mobile-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-weight: 800;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.close-drawer {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.mobile-nav-link:hover {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+}
+
+/* ==========================================================================
+   4. MAIN PAYMENT FAILED SECTION (MOBILE-FIRST)
+   ========================================================================== */
+.payment-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem 1rem 2rem;
+}
+
+.payment-layout {
+  width: 100%;
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "center center"
+    "left   right";
+  align-items: center;
+  justify-items: center;
+  gap: 1rem;
+}
+
+.payment-center {
+  grid-area: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 480px;
+}
+
+.card-alert-box {
+  width: min(230px, 62vw);
+  margin-bottom: 0.5rem;
+}
+
+.card-alert-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 12px 20px rgba(15, 23, 42, 0.25));
+}
+
+.failed-heading {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: clamp(2rem, 7vw, 2.75rem);
+  color: var(--text-dark);
+  margin-bottom: 0.45rem;
+}
+
+.failed-subtext {
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+/* Transaction Details Box */
+.tx-box {
+  width: 100%;
+  max-width: 330px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+  text-align: left;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+  margin-bottom: 1.15rem;
+}
+
+.tx-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.25rem;
+}
+
+.tx-line {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: #1e293b;
+}
+
+/* Buttons */
+.action-buttons {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 0.8rem;
+}
+
+.btn-retry,
+.btn-method {
+  padding: 0.72rem 1.45rem;
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-retry {
+  background: var(--orange-btn);
+  box-shadow: 0 6px 16px rgba(247, 103, 7, 0.35);
+}
+
+.btn-method {
+  background: var(--teal-btn);
+  box-shadow: 0 6px 16px rgba(12, 93, 110, 0.3);
+}
+
+.btn-retry:hover,
+.btn-method:hover {
+  transform: translateY(-2px);
+}
+
+.support-note {
+  font-size: 0.8rem;
+  color: #334155;
+}
+
+.support-link {
+  text-decoration: underline;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.status-message {
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #c2410c;
+  min-height: 1.1rem;
+}
+
+/* Left & Right Equipment */
+.equipment-left {
+  grid-area: left;
+  width: 100%;
+  max-width: 185px;
+}
+
+.equipment-right {
+  grid-area: right;
+  width: 100%;
+  max-width: 185px;
+}
+
+.equipment-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 12px 18px rgba(2, 6, 23, 0.25));
+}
+
+/* ==========================================================================
+   5. FOOTER
+   ========================================================================== */
+.site-footer {
+  background: rgba(255, 255, 255, 0.75);
+  border-top: 1px solid rgba(15, 23, 42, 0.1);
+  padding: 0.65rem 1.25rem;
+  font-size: 0.75rem;
+  color: #475569;
+}
+
+.footer-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.footer-links a:hover {
+  color: #0f172a;
+}
+
+/* ==========================================================================
+   6. TABLET & LAPTOP / DESKTOP BREAKPOINTS
+   ========================================================================== */
+@media (min-width: 640px) {
+  .action-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .equipment-left,
+  .equipment-right {
+    max-width: 240px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .desktop-nav {
+    display: block;
+  }
+
+  .hamburger-btn {
+    display: none;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: #0f172a;
+    padding: 0.4rem 0;
+  }
+
+  .chevron {
+    width: 15px;
+    height: 15px;
+  }
+
+  .has-dropdown {
+    position: relative;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 210px;
+    background: #ffffff;
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    border-radius: 8px;
+    padding: 0.4rem;
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: all 0.2s ease;
+  }
+
+  .has-dropdown:hover .dropdown-menu,
+  .has-dropdown.open .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 0.55rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.86rem;
+    color: #1e293b;
+  }
+
+  .dropdown-menu a:hover {
+    background: #f1f5f9;
+  }
+
+  .payment-layout {
+    grid-template-columns: 1fr minmax(420px, 520px) 1fr;
+    grid-template-areas: "left center right";
+    gap: 1.5rem;
+  }
+
+  .equipment-left,
+  .equipment-right {
+    max-width: 360px;
+    align-self: end;
+  }
+}
+
+/* ==========================================================================
+   7. SUBTLE ANIMATIONS
+   ========================================================================== */
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+.float-slow {
+  animation: floatGentle 4.5s ease-in-out infinite;
+}
+
+.float-delayed {
+  animation: floatGentle 4.5s ease-in-out 1.2s infinite;
+}

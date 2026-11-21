@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payment Failed | HVE Motors & Pumps</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Full-Screen Warehouse Background Image */
+    html,
+    body {
+      background: transparent !important;
+      position: relative;
+    }
+
+    .bg-wallpaper {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      z-index: -2;
+      pointer-events: none;
+    }
+
+    .bg-tint {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(235, 243, 248, 0.52) 0%,
+        rgba(220, 232, 240, 0.45) 50%,
+        rgba(200, 216, 228, 0.62) 100%
+      );
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* Center single-column layout so the background motors & pumps stay visible on left & right */
+    .payment-layout {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      width: 100%;
+    }
+
+    .site-header {
+      background: rgba(255, 255, 255, 0.78) !important;
+      backdrop-filter: blur(10px);
+    }
+
+    .tx-box {
+      background: rgba(255, 255, 255, 0.92) !important;
+      backdrop-filter: blur(8px);
+    }
+
+    .site-footer {
+      background: rgba(255, 255, 255, 0.85) !important;
+      backdrop-filter: blur(8px);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= REAL WAREHOUSE BACKGROUND IMAGE ================= -->
+ <img src="bg.jpeg" alt="" class="bg-wallpaper" aria-hidden="true" />
+  <div class="bg-tint" aria-hidden="true"></div>
+  <!-- ================= HEADER ================= -->
+  <header class="site-header">
+    <div class="header-container">
+      <!-- HVE Logo with Green & Blue Swoosh -->
+      <a href="#home" class="brand-logo" aria-label="HVE Motors & Pumps Home">
+        <div class="logo-mark">
+          <svg class="logo-swoosh" viewBox="0 0 180 72" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <defs>
+              <linearGradient id="greenSwoosh" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#65a30d"/>
+                <stop offset="60%" stop-color="#84cc16"/>
+                <stop offset="100%" stop-color="#a3e635"/>
+              </linearGradient>
+              <linearGradient id="blueSwoosh" x1="0%" y1="100%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#0284c7"/>
+                <stop offset="60%" stop-color="#0ea5e9"/>
+                <stop offset="100%" stop-color="#38bdf8"/>
+              </linearGradient>
+              <linearGradient id="metalText" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#ffffff"/>
+                <stop offset="55%" stop-color="#cbd5e1"/>
+                <stop offset="100%" stop-color="#64748b"/>
+              </linearGradient>
+            </defs>
+            <path d="M12 52C18 65 62 69 118 56C82 61 36 60 22 46L12 52Z" fill="url(#greenSwoosh)"/>
+            <path d="M56 16C106 4 156 8 166 26C172 37 158 50 138 56C150 48 158 37 152 28C144 15 102 12 56 16Z" fill="url(#blueSwoosh)"/>
+            <polygon points="82,24 98,24 90,38" fill="#0284c7"/>
+            <text x="16" y="47" font-family="Montserrat, sans-serif" font-weight="900" font-style="italic" font-size="34" letter-spacing="-1" fill="url(#metalText)" stroke="#0f172a" stroke-width="1">HVE</text>
+          </svg>
+          <span class="brand-subtitle">MOTORS &amp; PUMPS</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav" aria-label="Primary Navigation">
+        <ul class="nav-list">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li class="has-dropdown">
+            <button type="button" class="nav-link dropdown-trigger" aria-expanded="false">
+              Motors
+              <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#three-phase">3-Phase Induction Motors</a></li>
+              <li><a href="#single-phase">Single Phase Motors</a></li>
+              <li><a href="#flameproof">Flameproof Motors</a></li>
+            </ul>
+          </li>
+          <li class="has-dropdown">
+            <button type="button" class="nav-link dropdown-trigger" aria-expanded="false">
+              Pumps
+              <svg class="chevron" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#centrifugal">Centrifugal Pumps</a></li>
+              <li><a href="#submersible">Submersible Pumps</a></li>
+              <li><a href="#booster">Booster Pumps</a></li>
+            </ul>
+          </li>
+          <li><a href="#spares" class="nav-link">Spares</a></li>
+          <li><a href="#solutions" class="nav-link">Solutions</a></li>
+          <li><a href="#support" class="nav-link">Support</a></li>
+        </ul>
+      </nav>
+
+      <!-- Header Icons -->
+      <div class="header-actions">
+        <button type="button" class="icon-btn" id="searchToggle" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+
+        <button type="button" class="icon-btn" aria-label="Account">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </button>
+
+        <button type="button" class="icon-btn cart-btn" aria-label="Cart">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge">1</span>
+        </button>
+
+        <button type="button" class="icon-btn hamburger-btn" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-overlay" id="searchBar" hidden>
+      <form class="search-form" onsubmit="event.preventDefault();">
+        <input type="search" placeholder="Search motors, pumps, or spares..." aria-label="Search products" />
+        <button type="submit" class="search-submit">Search</button>
+      </form>
+    </div>
+  </header>
+
+  <!-- ================= MOBILE DRAWER ================= -->
+  <div class="drawer-backdrop" id="drawerBackdrop"></div>
+  <aside class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="drawer-header">
+      <span>HVE Menu</span>
+      <button type="button" class="close-drawer" id="closeDrawer" aria-label="Close menu">&times;</button>
+    </div>
+    <ul class="mobile-nav-list">
+      <li><a href="#home" class="mobile-nav-link">Home</a></li>
+      <li><a href="#motors" class="mobile-nav-link">Motors</a></li>
+      <li><a href="#pumps" class="mobile-nav-link">Pumps</a></li>
+      <li><a href="#spares" class="mobile-nav-link">Spares</a></li>
+      <li><a href="#solutions" class="mobile-nav-link">Solutions</a></li>
+      <li><a href="#support" class="mobile-nav-link">Support</a></li>
+    </ul>
+  </aside>
+
+  <!-- ================= MAIN PAYMENT FAILED SECTION ================= -->
+  <main class="payment-main">
+    <div class="payment-layout">
+      <section class="payment-center" aria-labelledby="failed-title">
+        <!-- Declined Card with Cracked Red Cross -->
+        <div class="card-alert-box">
+          <svg viewBox="0 0 260 175" class="card-alert-svg" role="img" aria-label="Declined Payment Card">
+            <defs>
+              <linearGradient id="cardBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1e40af"/>
+                <stop offset="55%" stop-color="#0f172a"/>
+                <stop offset="100%" stop-color="#020617"/>
+              </linearGradient>
+              <linearGradient id="redCrossGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#ff5a36"/>
+                <stop offset="100%" stop-color="#b91c1c"/>
+              </linearGradient>
+            </defs>
+            <g stroke="#f97316" stroke-width="2.2" stroke-linecap="round" opacity="0.85">
+              <path d="M44 26 L26 12 L16 20"/>
+              <path d="M216 26 L234 12 L244 20"/>
+              <path d="M36 96 L14 92 L10 104"/>
+              <path d="M224 96 L246 92 L250 104"/>
+            </g>
+            <rect x="42" y="28" width="176" height="114" rx="14" fill="url(#cardBodyGrad)" stroke="#60a5fa" stroke-width="2"/>
+            <rect x="60" y="56" width="30" height="22" rx="4" fill="#f59e0b"/>
+            <line x1="60" y1="67" x2="90" y2="67" stroke="#78350f" stroke-width="1.5"/>
+            <text x="60" y="104" font-family="Inter, sans-serif" font-weight="600" font-size="11" fill="#93c5fd">****</text>
+            <text x="155" y="104" font-family="Inter, sans-serif" font-weight="600" font-size="11" fill="#93c5fd">3456</text>
+            <circle cx="174" cy="122" r="10" fill="#ef4444" opacity="0.9"/>
+            <circle cx="188" cy="122" r="10" fill="#f59e0b" opacity="0.9"/>
+            <path d="M98 44 L130 76 L162 44 L178 60 L146 92 L178 124 L162 140 L130 108 L98 140 L82 124 L114 92 L82 60 Z" fill="url(#redCrossGrad)" stroke="#fef2f2" stroke-width="2.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <h1 id="failed-title" class="failed-heading">Payment Failed.</h1>
+        <p class="failed-subtext">
+          Unfortunately, your transaction could not be completed. Please review your details or try a different payment method.
+        </p>
+
+        <div class="tx-box">
+          <p class="tx-title">Transaction Details:</p>
+          <p class="tx-line"><strong>Order #:</strong> HVE-89201</p>
+          <p class="tx-line"><strong>Amount:</strong> $549.50</p>
+          <p class="tx-line"><strong>Reason:</strong> Bank Authorization Declined.</p>
+        </div>
+
+        <div class="action-buttons">
+          <button type="button" class="btn-retry" id="retryBtn">Retry Payment</button>
+          <button type="button" class="btn-method" id="methodBtn">Use Different Payment Method</button>
+        </div>
+
+        <p class="support-note">
+          Need help? <a href="#support" class="support-link">Contact Customer Support.</a>
+        </p>
+
+        <p class="status-message" id="statusMsg" role="status" aria-live="polite"></p>
+      </section>
+    </div>
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p class="footer-copy">&copy; 2026 HVE Motors &amp; Pumps. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#pumps">Pumps</a>
+        <a href="#secondary">Secondary</a>
+        <a href="#blog">Blog</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
