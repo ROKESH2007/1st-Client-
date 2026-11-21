@@ -1,0 +1,910 @@
+/* ==========================================================================
+   1. CSS CUSTOM PROPERTIES (MOBILE-FIRST LIGHT THEME -> DESKTOP DARK THEME)
+   ========================================================================== */
+:root {
+  /* Mobile & Tablet Palette (Clean Light Industrial / Teal & Orange) */
+  --bg-page: #f4f8f7;
+  --bg-radial-glow: radial-gradient(circle at 50% 35%, #d6ebe6 0%, #f4f8f7 68%);
+  --header-bg: #034638;
+  --header-border: #ff7a00;
+  --text-primary: #064635;
+  --text-secondary: #4a5568;
+  --text-header: #ffffff;
+  --accent-orange: #ff7a00;
+  --accent-orange-hover: #e56d00;
+  --btn-primary-bg: #034638;
+  --btn-primary-text: #ffffff;
+  --btn-secondary-bg: #ffffff;
+  --btn-secondary-text: #064635;
+  --btn-secondary-border: #064635;
+  --digit-fill: #054738;
+  --gear-color: #ff7a00;
+
+  /* Pump Gradients (Teal on Mobile) */
+  --pump-c1: #14967f;
+  --pump-c2: #075e4e;
+  --pump-c3: #03332a;
+
+  /* Typography & Layout */
+  --font-display: 'Montserrat', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --container-max: 1360px;
+  --transition-fast: 0.22s ease;
+  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ==========================================================================
+   2. RESET & BASE STYLES (PREVENT HORIZONTAL SCROLL)
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  font-family: var(--font-body);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ==========================================================================
+   3. HEADER & NAVIGATION (MOBILE-FIRST)
+   ========================================================================== */
+.site-header {
+  position: relative;
+  z-index: 50;
+  background-color: var(--header-bg);
+  color: var(--text-header);
+  border-bottom: 4px solid var(--header-border);
+  border-bottom-right-radius: 28px;
+  width: 100%;
+}
+
+.header-container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0.85rem 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+
+/* Brand Logo */
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-shrink: 0;
+}
+
+.logo-gear-icon {
+  width: 38px;
+  height: 38px;
+  color: var(--gear-color);
+  transition: transform 0.5s ease;
+}
+
+.brand-logo:hover .logo-gear-icon {
+  transform: rotate(45deg);
+}
+
+.gear-inner {
+  fill: var(--header-bg);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.brand-title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: 0.04em;
+  color: #ffffff;
+}
+
+.brand-subtitle {
+  font-size: 0.54rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #e2e8f0;
+  margin-top: 2px;
+}
+
+/* Desktop Nav hidden on mobile */
+.desktop-nav {
+  display: none;
+}
+
+/* Header Action Icons */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.icon-btn {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #ffffff;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.icon-btn svg {
+  width: 21px;
+  height: 21px;
+}
+
+.desktop-only-icon {
+  display: none;
+}
+
+.cart-badge {
+  position: absolute;
+  top: 0;
+  right: -2px;
+  min-width: 17px;
+  height: 17px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background-color: var(--accent-orange);
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Collapsible Search Overlay */
+.search-overlay {
+  padding: 0.75rem 1.15rem 1rem;
+  background: rgba(2, 44, 35, 0.96);
+}
+
+.search-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.search-form input {
+  flex: 1;
+  padding: 0.6rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.search-form input::placeholder {
+  color: #cbd5e1;
+}
+
+.search-submit {
+  padding: 0.6rem 1.15rem;
+  border-radius: 999px;
+  background: var(--accent-orange);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* ==========================================================================
+   4. MOBILE NAVIGATION DRAWER
+   ========================================================================== */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-smooth);
+  z-index: 90;
+}
+
+.drawer-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(82vw, 320px);
+  height: 100vh;
+  background: #033b2f;
+  color: #ffffff;
+  padding: 1.5rem;
+  transform: translateX(100%);
+  transition: transform var(--transition-smooth);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.mobile-drawer.open {
+  transform: translateX(0);
+}
+
+.drawer-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  padding-bottom: 0.9rem;
+}
+
+.drawer-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--accent-orange);
+}
+
+.close-drawer {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.mobile-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  transition: background var(--transition-fast);
+}
+
+.mobile-nav-link:hover {
+  background: rgba(255, 122, 0, 0.18);
+  color: var(--accent-orange);
+}
+
+/* ==========================================================================
+   5. HERO 404 SHOWCASE (MOBILE-FIRST LAYOUT)
+   ========================================================================== */
+.hero-404 {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-radial-glow);
+  padding: 1.5rem 1.25rem 2.5rem;
+  overflow: hidden;
+}
+
+.warehouse-ambient {
+  display: none;
+}
+
+/* Mobile Layout uses CSS Grid to arrange 404 top, paired hardware middle, copy bottom */
+.hero-grid {
+  width: 100%;
+  max-width: var(--container-max);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+    "center center"
+    "motor  pump"
+    "pedestal pedestal";
+  align-items: center;
+  justify-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.error-center {
+  grid-area: center;
+  display: contents; /* Allows children to participate cleanly in mobile grid ordering */
+}
+
+/* Warning Triangle Badge */
+.warning-badge {
+  grid-column: 1 / -1;
+  order: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: -0.25rem;
+}
+
+.triangle-icon {
+  width: 44px;
+  height: 40px;
+  animation: pulseWarning 2.4s infinite ease-in-out;
+}
+
+.spark {
+  width: 12px;
+  height: 3px;
+  background: var(--accent-orange);
+  border-radius: 3px;
+}
+
+.spark-left {
+  transform: rotate(28deg);
+}
+
+.spark-right {
+  transform: rotate(-28deg);
+}
+
+/* 404 Typography */
+.code-404-wrapper {
+  grid-column: 1 / -1;
+  order: 2;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+}
+
+.bg-gear-accent {
+  display: none;
+}
+
+.error-code {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(5.2rem, 24vw, 7.6rem);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+  color: var(--digit-fill);
+  user-select: none;
+  position: relative;
+  z-index: 2;
+}
+
+.orbital-swoosh {
+  position: absolute;
+  width: 112%;
+  bottom: 8%;
+  left: -6%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Hardware Showcases (Paired Side-by-Side on Mobile Pedestal) */
+.motor-showcase {
+  grid-area: motor;
+  order: 3;
+  width: 100%;
+  max-width: 210px;
+  margin-right: -12px;
+  z-index: 4;
+}
+
+.pump-showcase {
+  grid-area: pump;
+  order: 3;
+  width: 100%;
+  max-width: 210px;
+  margin-left: -12px;
+  z-index: 4;
+}
+
+.hardware-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 12px 18px rgba(3, 51, 42, 0.22));
+}
+
+/* Pump Theme Gradient Stops */
+.pump-stop-1 { stop-color: var(--pump-c1); }
+.pump-stop-2 { stop-color: var(--pump-c2); }
+.pump-stop-3 { stop-color: var(--pump-c3); }
+.pump-base-fill { fill: var(--pump-c3); }
+
+/* Mobile Concrete Pedestal */
+.mobile-pedestal-stage {
+  grid-area: pedestal;
+  order: 4;
+  width: min(92%, 380px);
+  margin-top: -16px;
+  margin-bottom: 1.25rem;
+  z-index: 2;
+}
+
+.pedestal-disc {
+  height: 24px;
+  background: linear-gradient(180deg, #d1d5db 0%, #9ca3af 65%, #6b7280 100%);
+  border-radius: 50% / 35%;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.14);
+  position: relative;
+}
+
+.pedestal-glow {
+  position: absolute;
+  bottom: 3px;
+  left: 12%;
+  right: 12%;
+  height: 3px;
+  background: var(--accent-orange);
+  border-radius: 999px;
+  box-shadow: 0 0 10px var(--accent-orange);
+}
+
+/* Heading & Copy */
+.error-title {
+  grid-column: 1 / -1;
+  order: 5;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(1.85rem, 7.5vw, 2.5rem);
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 0.45rem;
+}
+
+.highlight-orange {
+  color: var(--accent-orange);
+}
+
+.error-description {
+  grid-column: 1 / -1;
+  order: 6;
+  max-width: 340px;
+  text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 0.9rem;
+}
+
+.accent-divider {
+  grid-column: 1 / -1;
+  order: 7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 1.35rem;
+}
+
+.bar-orange {
+  width: 56px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--accent-orange);
+}
+
+.bar-secondary {
+  width: 24px;
+  height: 4px;
+  border-radius: 4px;
+  background: #0d9488;
+}
+
+/* CTA Buttons */
+.cta-group {
+  grid-column: 1 / -1;
+  order: 8;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.5rem;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  box-shadow: 0 8px 20px rgba(3, 70, 56, 0.25);
+}
+
+.btn-secondary {
+  background-color: var(--btn-secondary-bg);
+  color: var(--btn-secondary-text);
+  border: 1.8px solid var(--btn-secondary-border);
+}
+
+.btn-icon {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+}
+
+.icon-desktop,
+.label-desktop {
+  display: none;
+}
+
+/* ==========================================================================
+   6. TABLET BREAKPOINT (min-width: 640px)
+   ========================================================================== */
+@media (min-width: 640px) {
+  .header-container {
+    padding: 1rem 2rem;
+  }
+
+  .cta-group {
+    flex-direction: row;
+    justify-content: center;
+    max-width: 480px;
+  }
+
+  .btn {
+    flex: 1;
+  }
+
+  .error-description {
+    max-width: 460px;
+    font-size: 1.02rem;
+  }
+
+  .motor-showcase,
+  .pump-showcase {
+    max-width: 250px;
+  }
+}
+
+/* ==========================================================================
+   7. LAPTOP & DESKTOP BREAKPOINT (min-width: 1024px)
+      Transforms seamlessly into the Dark Industrial Warehouse Reference Design
+   ========================================================================== */
+@media (min-width: 1024px) {
+  :root {
+    --bg-page: #050c17;
+    --bg-radial-glow: radial-gradient(circle at 50% 42%, #0d2b4e 0%, #061326 52%, #030811 100%);
+    --header-bg: rgba(4, 11, 22, 0.85);
+    --text-primary: #ffffff;
+    --text-secondary: #cbd5e1;
+    --btn-primary-bg: linear-gradient(180deg, #ff8c1a 0%, #ea580c 100%);
+    --btn-secondary-bg: rgba(6, 24, 48, 0.65);
+    --btn-secondary-text: #ffffff;
+    --btn-secondary-border: #1d70b8;
+    --gear-color: #2596be;
+
+    /* Pump Gradients (Electric Cobalt Blue on Desktop) */
+    --pump-c1: #38bdf8;
+    --pump-c2: #0264c8;
+    --pump-c3: #04295e;
+  }
+
+  /* Transparent Industrial Header */
+  .site-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom-right-radius: 0;
+    backdrop-filter: blur(10px);
+  }
+
+  .logo-gear-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .brand-title {
+    font-size: 1.75rem;
+  }
+
+  /* Show Full Desktop Nav, Hide Mobile Hamburger & Wishlist */
+  .desktop-nav {
+    display: block;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #e2e8f0;
+    padding: 0.5rem 0;
+    transition: color var(--transition-fast);
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: #ffffff;
+  }
+
+  .chevron {
+    width: 16px;
+    height: 16px;
+    opacity: 0.8;
+  }
+
+  /* Dropdown Menus */
+  .has-dropdown {
+    position: relative;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 230px;
+    background: #0a192f;
+    border: 1px solid rgba(56, 189, 248, 0.25);
+    border-radius: 10px;
+    padding: 0.5rem;
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: all var(--transition-fast);
+  }
+
+  .has-dropdown:hover .dropdown-menu,
+  .has-dropdown.open .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .dropdown-menu a {
+    display: block;
+    padding: 0.6rem 0.85rem;
+    border-radius: 6px;
+    font-size: 0.88rem;
+    color: #cbd5e1;
+  }
+
+  .dropdown-menu a:hover {
+    background: rgba(37, 150, 190, 0.2);
+    color: #ffffff;
+  }
+
+  .mobile-only-icon,
+  .hamburger-btn {
+    display: none;
+  }
+
+  .desktop-only-icon {
+    display: inline-flex;
+  }
+
+  /* Warehouse Lighting Ambient Effects */
+  .warehouse-ambient {
+    display: block;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .light-beam {
+    position: absolute;
+    top: 18%;
+    width: 140px;
+    height: 4px;
+    background: #f59e0b;
+    box-shadow: 0 0 35px 10px rgba(245, 158, 11, 0.45);
+    border-radius: 4px;
+    opacity: 0.75;
+  }
+
+  .beam-left {
+    left: 6%;
+    transform: rotate(18deg);
+  }
+
+  .beam-right {
+    right: 6%;
+    transform: rotate(-18deg);
+  }
+
+  .floor-reflection {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 22%;
+    background: linear-gradient(180deg, rgba(14, 116, 144, 0) 0%, rgba(14, 165, 233, 0.14) 55%, rgba(2, 6, 23, 0.9) 100%);
+    border-top: 1px solid rgba(56, 189, 248, 0.15);
+  }
+
+  /* 3-Column Desktop Grid: Motor | Center 404 | Pump */
+  .hero-404 {
+    padding: 2rem 2.5rem 3rem;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr minmax(460px, 1.25fr) 1fr;
+    grid-template-areas: "motor center pump";
+    gap: 1.5rem;
+  }
+
+  .error-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  /* Hide Mobile-only Pedestal & Orbital Swoosh */
+  .mobile-pedestal-stage,
+  .orbital-swoosh,
+  .spark {
+    display: none;
+  }
+
+  .warning-badge {
+    margin-bottom: -0.6rem;
+    z-index: 4;
+  }
+
+  .triangle-icon {
+    width: 52px;
+    height: 48px;
+    filter: drop-shadow(0 0 12px rgba(255, 122, 0, 0.65));
+  }
+
+  /* Metallic Silver-Blue 404 with Gear Backdrop */
+  .bg-gear-accent {
+    display: block;
+    position: absolute;
+    width: 155px;
+    height: 155px;
+    right: -38px;
+    top: -28px;
+    color: #1d63b8;
+    opacity: 0.85;
+    z-index: 1;
+    animation: spinSlow 28s linear infinite;
+  }
+
+  .error-code {
+    font-size: clamp(7.2rem, 11vw, 9.8rem);
+    font-style: italic;
+    background: linear-gradient(180deg, #ffffff 15%, #cbe3ff 55%, #6ba3e8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 12px 24px rgba(0, 119, 255, 0.45));
+  }
+
+  .error-title {
+    font-style: normal;
+    font-size: 2.35rem;
+    margin-top: 0.25rem;
+  }
+
+  .error-description {
+    max-width: 520px;
+    color: #cbd5e1;
+  }
+
+  .bar-secondary {
+    background: #2563eb;
+  }
+
+  /* Desktop Product Showcases */
+  .motor-showcase,
+  .pump-showcase {
+    max-width: 390px;
+    margin: 0;
+    align-self: end;
+  }
+
+  .hardware-svg {
+    filter: drop-shadow(0 22px 28px rgba(0, 140, 255, 0.35));
+  }
+
+  /* Swap Mobile vs Desktop Button Icons & Labels */
+  .icon-mobile,
+  .label-mobile {
+    display: none;
+  }
+
+  .icon-desktop,
+  .label-desktop {
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: var(--btn-primary-bg);
+    box-shadow: 0 0 24px rgba(255, 122, 0, 0.5);
+  }
+
+  .btn-secondary {
+    box-shadow: 0 0 20px rgba(29, 112, 184, 0.35);
+  }
+
+  .btn-secondary:hover {
+    background: rgba(29, 112, 184, 0.28);
+  }
+}
+
+/* ==========================================================================
+   8. SUBTLE KEYFRAME ANIMATIONS
+   ========================================================================== */
+@keyframes pulseWarning {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.07); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-7px); }
+}
+
+.float-slow {
+  animation: floatGentle 4.5s ease-in-out infinite;
+}
+
+.float-delayed {
+  animation: floatGentle 4.5s ease-in-out 1.2s infinite;
+}
